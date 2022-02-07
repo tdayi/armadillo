@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Core", "01-Core", "{4A17705D-619E-4CC4-B2B7-61853A1F6D5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Application", "02-Application", "{2E17E24D-600D-4C16-98A5-84DACECAD31C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Presentation", "03-Presentation", "{B77732E3-B37F-4C55-ACC9-CB39F229FF6A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-Test", "04-Test", "{E99F9C32-4155-4E78-A5E0-3E4E5925C33E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Armadillo.Core", "Core\Armadillo.Core\Armadillo.Core.csproj", "{536E400F-7585-46B8-A2F3-A1064CCEF689}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Armadillo.Core.Enumeration", "Core\Armadillo.Core.Enumeration\Armadillo.Core.Enumeration.csproj", "{8124C4A1-9735-4C3D-8293-78EFA929F5F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Armadillo.Application", "Application\Armadillo.Application\Armadillo.Application.csproj", "{73ADD6C5-3E1E-4F93-955E-02FE30980A7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Armadillo.Application.Contract", "Application\Armadillo.Application.Contract\Armadillo.Application.Contract.csproj", "{E208047C-C9F0-4596-BEB9-45B92342338C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Armadillo.Web", "Presentation\Armadillo.Web\Armadillo.Web.csproj", "{45543802-F91E-464D-A8EB-F497291DB74F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Armadillo.Test.SpaceVehicle", "Test\Armadillo.Test.SpaceVehicle\Armadillo.Test.SpaceVehicle.csproj", "{572CA358-219E-49D7-8B02-36344B7D704F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{536E400F-7585-46B8-A2F3-A1064CCEF689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{536E400F-7585-46B8-A2F3-A1064CCEF689}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{536E400F-7585-46B8-A2F3-A1064CCEF689}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{536E400F-7585-46B8-A2F3-A1064CCEF689}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8124C4A1-9735-4C3D-8293-78EFA929F5F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8124C4A1-9735-4C3D-8293-78EFA929F5F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8124C4A1-9735-4C3D-8293-78EFA929F5F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8124C4A1-9735-4C3D-8293-78EFA929F5F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73ADD6C5-3E1E-4F93-955E-02FE30980A7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73ADD6C5-3E1E-4F93-955E-02FE30980A7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73ADD6C5-3E1E-4F93-955E-02FE30980A7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73ADD6C5-3E1E-4F93-955E-02FE30980A7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E208047C-C9F0-4596-BEB9-45B92342338C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E208047C-C9F0-4596-BEB9-45B92342338C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E208047C-C9F0-4596-BEB9-45B92342338C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E208047C-C9F0-4596-BEB9-45B92342338C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45543802-F91E-464D-A8EB-F497291DB74F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45543802-F91E-464D-A8EB-F497291DB74F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45543802-F91E-464D-A8EB-F497291DB74F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45543802-F91E-464D-A8EB-F497291DB74F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{572CA358-219E-49D7-8B02-36344B7D704F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{572CA358-219E-49D7-8B02-36344B7D704F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{572CA358-219E-49D7-8B02-36344B7D704F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{572CA358-219E-49D7-8B02-36344B7D704F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{536E400F-7585-46B8-A2F3-A1064CCEF689} = {4A17705D-619E-4CC4-B2B7-61853A1F6D5E}
+		{8124C4A1-9735-4C3D-8293-78EFA929F5F0} = {4A17705D-619E-4CC4-B2B7-61853A1F6D5E}
+		{73ADD6C5-3E1E-4F93-955E-02FE30980A7C} = {2E17E24D-600D-4C16-98A5-84DACECAD31C}
+		{E208047C-C9F0-4596-BEB9-45B92342338C} = {2E17E24D-600D-4C16-98A5-84DACECAD31C}
+		{45543802-F91E-464D-A8EB-F497291DB74F} = {B77732E3-B37F-4C55-ACC9-CB39F229FF6A}
+		{572CA358-219E-49D7-8B02-36344B7D704F} = {E99F9C32-4155-4E78-A5E0-3E4E5925C33E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34198DCE-7857-44F2-84DE-A1E67792E9D7}
+	EndGlobalSection
+EndGlobal
