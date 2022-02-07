@@ -1,11 +1,14 @@
 using Armadillo.Application.Concrete.Cache;
+using Armadillo.Application.Concrete.Serializer;
 using Armadillo.Application.Discovery;
 using Armadillo.Application.Navigation;
 using Armadillo.Application.Vehicle;
 using Armadillo.Core.Cache;
 using Armadillo.Core.Discovery;
 using Armadillo.Core.Navigation;
+using Armadillo.Core.Serializer;
 using Armadillo.Core.Vehicle;
+using Armadillo.Web.Middleware;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 namespace Armadillo.Web
 {
@@ -37,6 +41,7 @@ namespace Armadillo.Web
             services.AddMediatR(assembly);
 
             services.AddTransient<ICacheManager, InMemoryCacheManager>();
+            services.AddTransient<IJsonSerializer, JsonSerializer>();
 
             services.AddTransient<IDiscoveryAreaFactory, DiscoveryAreaFactory>();
             services.AddTransient<ISpaceVehicleFactory, SpaceVehicleFactory>();
@@ -49,6 +54,11 @@ namespace Armadillo.Web
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Armadillo API", Version = "v1" });
+            });
+
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
         }
 
@@ -69,6 +79,8 @@ namespace Armadillo.Web
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

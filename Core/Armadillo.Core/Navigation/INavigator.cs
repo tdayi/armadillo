@@ -7,5 +7,6 @@ namespace Armadillo.Core.Navigation
     {
         Direction Direction { get; }
         Task SetPositionAsync(Position position, Movement movement);
+        Task<Position> CalculatePositionAsync(Position position, Movement movement);
     }
 }

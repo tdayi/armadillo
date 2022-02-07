@@ -1,5 +1,6 @@
 ﻿using Armadillo.Application.Contract.DTO.Command.Navigate;
 using Armadillo.Core.Cache;
+using Armadillo.Core.Exception;
 using Armadillo.Core.Vehicle;
 using MediatR;
 using System.Threading;
@@ -20,6 +21,10 @@ namespace Armadillo.Application.Handler.Command.Navigate
         public async Task<DoNavigateResponse> Handle(DoNavigateRequest request, CancellationToken cancellationToken)
         {
             var vehicle = cacheManager.GetByKey<ISpaceVehicle>(request.VehicleName);
+            if (vehicle is null)
+            {
+                throw new BusinessException($"{request.VehicleName} is not found!");
+            }
 
             await vehicle.NavigateAsync(request.Movement);
 

@@ -1,5 +1,6 @@
 ﻿using Armadillo.Core.Cache;
 using Armadillo.Core.Constant;
+using Armadillo.Core.Discovery;
 using Armadillo.Core.Navigation;
 using Armadillo.Core.Vehicle;
 using Microsoft.Extensions.Logging;
@@ -29,7 +30,7 @@ namespace Armadillo.Application.Vehicle
             this.spaceVehicleCreateLock = new SemaphoreSlim(1, 1);
         }
 
-        public async Task<ISpaceVehicle> CreateAsync(Guid areaId, Position position)
+        public async Task<ISpaceVehicle> CreateAsync(IDiscoveryArea discoveryArea, Position position)
         {
             return await Task.Run(async () =>
             {
@@ -45,7 +46,7 @@ namespace Armadillo.Application.Vehicle
 
                     cacheManager.Set<int>(CacheKey.MaxArmadilloNumber, number);
 
-                    spaceVehicle = new SpaceVehicle(areaId, $"Armadillo-{number}", position, navigators);
+                    spaceVehicle = new SpaceVehicle($"Armadillo-{number}", position, discoveryArea, navigators);
                 }
                 catch (Exception ex)
                 {

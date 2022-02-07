@@ -31,7 +31,14 @@ namespace Armadillo.Application.Concrete.Cache
 
         public T GetByKey<T>(string key)
         {
-            return memoryCache.Get<T>(key);
+            var result = default(T);
+
+            if (CacheContains(key))
+            {
+                result = memoryCache.Get<T>(key);
+            }
+
+            return result;
         }
 
         public void Set<T>(string key, T data)

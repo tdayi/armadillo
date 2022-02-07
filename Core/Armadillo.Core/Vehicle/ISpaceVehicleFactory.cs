@@ -1,11 +1,11 @@
-﻿using Armadillo.Core.Navigation;
-using System;
+﻿using Armadillo.Core.Discovery;
+using Armadillo.Core.Navigation;
 using System.Threading.Tasks;
 
 namespace Armadillo.Core.Vehicle
 {
     public interface ISpaceVehicleFactory
     {
-        Task<ISpaceVehicle> CreateAsync(Guid areaId, Position position);
+        Task<ISpaceVehicle> CreateAsync(IDiscoveryArea discoveryArea, Position position);
     }
 }

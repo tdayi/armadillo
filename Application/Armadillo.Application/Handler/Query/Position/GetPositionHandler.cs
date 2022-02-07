@@ -1,5 +1,6 @@
 ﻿using Armadillo.Application.Contract.DTO.Query.Position;
 using Armadillo.Core.Cache;
+using Armadillo.Core.Exception;
 using Armadillo.Core.Vehicle;
 using MediatR;
 using System.Threading;
@@ -20,6 +21,10 @@ namespace Armadillo.Application.Handler.Query.Position
         public async Task<GetPositionResponse> Handle(GetPositionRequest request, CancellationToken cancellationToken)
         {
             var vehicle = cacheManager.GetByKey<ISpaceVehicle>(request.VehicleName);
+            if (vehicle is null)
+            {
+                throw new BusinessException($"{request.VehicleName} is not found!");
+            }
 
             var position = await vehicle.GetPositionAsync();
 

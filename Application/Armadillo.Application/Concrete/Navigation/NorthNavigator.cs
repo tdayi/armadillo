@@ -8,6 +8,24 @@ namespace Armadillo.Application.Navigation
     {
         public Direction Direction => Direction.North;
 
+        public async Task<Position> CalculatePositionAsync(Position position, Movement movement)
+        {
+            return await Task.Run(() =>
+            {
+                if (movement == Movement.Move)
+                {
+                    Position newPosition = (Position)position.Clone();
+                    newPosition.YIncrement();
+
+                    return newPosition;
+                }
+                else
+                {
+                    return position;
+                }
+            });
+        }
+
         public async Task SetPositionAsync(Position position, Movement movement)
         {
             await Task.Run(() =>

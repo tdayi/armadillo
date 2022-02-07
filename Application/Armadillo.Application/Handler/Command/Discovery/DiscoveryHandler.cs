@@ -31,14 +31,20 @@ namespace Armadillo.Application.Handler.Command.Discovery
         {
             var area = await discoveryAreaFactory.CreateAreaAsync(request.Width, request.Height);
 
-            var vehicle = await spaceVehicleFactory.CreateAsync(area.Id, new Position(0, 0, Direction.North));
-
             cacheManager.Set<IDiscoveryArea>(area.Id.ToString(), area);
+
+            var vehicle = await spaceVehicleFactory.CreateAsync(area,
+                new Position(
+                    request.X ?? 0,
+                    request.Y ?? 0,
+                    request.Direction ?? Direction.North));
+
             cacheManager.Set<ISpaceVehicle>(vehicle.Name, vehicle);
 
             return new CreateDiscoveryResponse
             {
-                Id = area.Id
+                Id = area.Id,
+                VehicleName = vehicle.Name
             };
         }
     }

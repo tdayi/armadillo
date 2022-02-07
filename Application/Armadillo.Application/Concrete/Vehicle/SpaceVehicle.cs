@@ -1,4 +1,7 @@
-﻿using Armadillo.Core.Enumeration;
+﻿using Armadillo.Application.Concrete.Vehicle;
+using Armadillo.Core.Discovery;
+using Armadillo.Core.Enumeration;
+using Armadillo.Core.Exception;
 using Armadillo.Core.Navigation;
 using Armadillo.Core.Vehicle;
 using System;
@@ -10,26 +13,26 @@ namespace Armadillo.Application.Vehicle
 {
     public class SpaceVehicle : ISpaceVehicle
     {
-        private readonly Guid areaId;
         private readonly string name;
         private readonly Position position;
+        private readonly IDiscoveryArea discoveryArea;
         private readonly IEnumerable<INavigator> navigators;
 
         public SpaceVehicle(
-            Guid areaId,
             string name,
             Position position,
+            IDiscoveryArea discoveryArea,
             IEnumerable<INavigator> navigators)
         {
-            this.areaId = areaId;
             this.name = name;
             this.position = position;
+            this.discoveryArea = discoveryArea;
             this.navigators = navigators;
         }
 
         public string Name => name;
 
-        public Guid AreaId => areaId;
+        public IDiscoveryArea DiscoveryArea => discoveryArea;
 
         public async Task<Position> GetPositionAsync()
         {
@@ -45,6 +48,12 @@ namespace Armadillo.Application.Vehicle
             if (navigator is null)
             {
                 throw new ArgumentNullException(nameof(INavigator));
+            }
+
+            SpaceVehicleMovement spaceVehicleMovement = new SpaceVehicleMovement();
+            if (!spaceVehicleMovement.IsAvailable(this, navigator, movement, position))
+            {
+                throw new BusinessException($"Discovery area width: {discoveryArea.Width} and height: {discoveryArea.Height} is not avaliable next movement!");
             }
 
             await navigator.SetPositionAsync(position, movement);

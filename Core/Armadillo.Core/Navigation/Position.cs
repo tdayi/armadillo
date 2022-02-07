@@ -1,8 +1,9 @@
 ﻿using Armadillo.Core.Enumeration;
+using System;
 
 namespace Armadillo.Core.Navigation
 {
-    public class Position
+    public class Position : ICloneable
     {
         public int X { get; protected set; }
         public int Y { get; protected set; }
@@ -41,6 +42,11 @@ namespace Armadillo.Core.Navigation
         public void ChangeDirection(Direction direction)
         {
             Direction = direction;
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }
