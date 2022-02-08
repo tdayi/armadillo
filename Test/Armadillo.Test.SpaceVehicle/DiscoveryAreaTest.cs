@@ -60,5 +60,49 @@ namespace Armadillo.Test.SpaceVehicle
 
             Assert.True(ex.Message == $"Discovery area width: {w} and height: {h} is not avaliable next movement!");
         }
+
+        [Fact]
+        public async Task Zero_Discovery_Area_Move_Should_Return_Discovery_Area_Fail_Async()
+        {
+            int w = 0;
+            int h = 0;
+
+            //0 0
+            //0 0 N
+            //M
+
+            var area = await discoveryAreaFactory.CreateAreaAsync(w, h);
+
+            var vehicle = await spaceVehicleFactory.CreateAsync(area, new Position(0, 0, Direction.North));
+
+            Func<Task> action = () => vehicle.NavigateAsync(Movement.Move);
+
+            var ex = await Record.ExceptionAsync(action);
+
+            Assert.True(ex.Message == $"Discovery area width: {w} and height: {h} is not avaliable next movement!");
+        }
+
+        [Fact]
+        public async Task Zero_Discovery_Area_Left_Move_Should_Return_Discovery_Area_Fail_Async()
+        {
+            int w = 0;
+            int h = 0;
+
+            //0 0
+            //0 0 N
+            //LM
+
+            var area = await discoveryAreaFactory.CreateAreaAsync(w, h);
+
+            var vehicle = await spaceVehicleFactory.CreateAsync(area, new Position(0, 0, Direction.North));
+
+            await vehicle.NavigateAsync(Movement.Left);
+
+            Func<Task> action = () => vehicle.NavigateAsync(Movement.Move);
+
+            var ex = await Record.ExceptionAsync(action);
+
+            Assert.True(ex.Message == $"Discovery area width: {w} and height: {h} is not avaliable next movement!");
+        }
     }
 }

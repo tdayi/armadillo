@@ -15,16 +15,16 @@ namespace Armadillo.Web.Controllers
             this.mediator = mediator;
         }
 
-        [HttpPost("/navigate/command/do")]
-        public async Task<IActionResult> DoNavigatedAsync([FromBody] DoNavigateRequest request)
+        [HttpPost("/navigate/position/change")]
+        public async Task<IActionResult> MovementAsync([FromBody] DoNavigateRequest request)
         {
             var result = await mediator.Send(request);
 
             return Ok(result);
         }
 
-        [HttpPost("/navigate/query/position")]
-        public async Task<IActionResult> DoNavigatedAsync([FromBody] GetPositionRequest request)
+        [HttpPost("/navigate/position/query")]
+        public async Task<IActionResult> GetPositionAsync([FromBody] GetPositionRequest request)
         {
             var result = await mediator.Send(request);
 

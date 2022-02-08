@@ -37,7 +37,7 @@ namespace Armadillo.Application.Concrete.Vehicle
         {
             var calculatedPosition = navigator.CalculatePositionAsync(position, movement).Result;
 
-            if (calculatedPosition.X > spaceVehicle.DiscoveryArea.Width || calculatedPosition.Y > spaceVehicle.DiscoveryArea.Height)
+            if (calculatedPosition.X < 0 || calculatedPosition.X > spaceVehicle.DiscoveryArea.Width || calculatedPosition.Y < 0 || calculatedPosition.Y > spaceVehicle.DiscoveryArea.Height)
             {
                 return false;
             }
