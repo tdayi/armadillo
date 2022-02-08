@@ -4,7 +4,7 @@ namespace Armadillo.Application.Contract.DTO.Command.Discovery
 {
     public class CreateDiscoveryResponse
     {
-        public Guid Id { get; set; }
+        public Guid DiscoveryId { get; set; }
         public string VehicleName { get; set; }
     }
 }

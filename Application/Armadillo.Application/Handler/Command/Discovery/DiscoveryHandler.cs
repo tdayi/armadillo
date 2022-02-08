@@ -42,7 +42,7 @@ namespace Armadillo.Application.Handler.Command.Discovery
 
             return new CreateDiscoveryResponse
             {
-                Id = area.Id,
+                DiscoveryId = area.Id,
                 VehicleName = vehicle.Name
             };
         }

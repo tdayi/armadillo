@@ -4,7 +4,6 @@ using Armadillo.Application.Vehicle;
 using Armadillo.Core.Cache;
 using Armadillo.Core.Discovery;
 using Armadillo.Core.Enumeration;
-using Armadillo.Core.Exception;
 using Armadillo.Core.Navigation;
 using Armadillo.Core.Vehicle;
 using Microsoft.Extensions.Logging;
