@@ -5,7 +5,6 @@ using Armadillo.Core.Enumeration;
 using Armadillo.Core.Navigation;
 using Armadillo.Core.Vehicle;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
