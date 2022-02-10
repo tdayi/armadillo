@@ -1,10 +1,14 @@
+using Armadillo.Application.Concrete.Navigation;
+using Armadillo.Application.Concrete.Serializer;
 using Armadillo.Application.Discovery;
 using Armadillo.Application.Navigation;
 using Armadillo.Application.Vehicle;
 using Armadillo.Core.Cache;
+using Armadillo.Core.Contract;
 using Armadillo.Core.Discovery;
 using Armadillo.Core.Enumeration;
 using Armadillo.Core.Navigation;
+using Armadillo.Core.Serializer;
 using Armadillo.Core.Vehicle;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -17,23 +21,33 @@ namespace Armadillo.Test.SpaceVehicle
 {
     public class DiscoveryAreaTest
     {
-        private readonly Mock<ILogger<SpaceVehicleFactory>> logger = new Mock<ILogger<SpaceVehicleFactory>>();
+        private readonly IJsonSerializer jsonSerializer;
+        private readonly IPositionTracker positionTracker;
+        private readonly Mock<IAppSettings> appSettings = new Mock<IAppSettings>();
+        private readonly Mock<ILogger<PositionTracker>> positionTrackerLogger = new Mock<ILogger<PositionTracker>>();
+        private readonly Mock<ILogger<SpaceVehicleFactory>> spaceVehicleFactoryLogger = new Mock<ILogger<SpaceVehicleFactory>>();
         private readonly Mock<ICacheManager> cacheManager = new Mock<ICacheManager>();
         private readonly IDiscoveryAreaFactory discoveryAreaFactory;
         private readonly ISpaceVehicleFactory spaceVehicleFactory;
 
         public DiscoveryAreaTest()
         {
-            var navigators = new List<INavigator>
+            jsonSerializer = new JsonSerializer();
+
+            appSettings.Setup(x => x.Tracker).Returns(new Tracker("armadillo_position/"));
+
+            positionTracker = new PositionTracker(positionTrackerLogger.Object, appSettings.Object, jsonSerializer);
+
+            var navigators = new List<Navigator>
             {
-                new EastNavigator(),
-                new NorthNavigator(),
-                new SouthNavigator(),
-                new WestNavigator()
+                new EastNavigator(positionTracker),
+                new NorthNavigator(positionTracker),
+                new SouthNavigator(positionTracker),
+                new WestNavigator(positionTracker)
             };
 
             this.discoveryAreaFactory = new DiscoveryAreaFactory();
-            this.spaceVehicleFactory = new SpaceVehicleFactory(cacheManager.Object, logger.Object, navigators);
+            this.spaceVehicleFactory = new SpaceVehicleFactory(cacheManager.Object, spaceVehicleFactoryLogger.Object, navigators);
         }
 
         [Fact]

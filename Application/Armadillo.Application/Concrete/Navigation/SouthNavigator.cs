@@ -4,45 +4,36 @@ using System.Threading.Tasks;
 
 namespace Armadillo.Application.Navigation
 {
-    public class SouthNavigator : INavigator
+    public class SouthNavigator : Navigator
     {
-        public Direction Direction => Direction.South;
+        private readonly IPositionTracker positionTracker;
 
-        public async Task<Position> CalculatePositionAsync(Position position, Movement movement)
+        public SouthNavigator(IPositionTracker positionTracker) : base(positionTracker)
         {
-            return await Task.Run(() =>
-            {
-                if (movement == Movement.Move)
-                {
-                    Position newPosition = (Position)position.Clone();
-                    newPosition.YDecrease();
-
-                    return newPosition;
-                }
-                else
-                {
-                    return position;
-                }
-            });
+            this.positionTracker = positionTracker;
         }
 
-        public async Task SetPositionAsync(Position position, Movement movement)
+        public override Direction Direction => Direction.South;
+
+        public override async Task ChangePositionAsync(Position position, Movement movement, bool forced)
         {
-            await Task.Run(() =>
+            switch (movement)
             {
-                switch (movement)
-                {
-                    case Movement.Right:
-                        position.ChangeDirection(Direction.West);
-                        break;
-                    case Movement.Left:
-                        position.ChangeDirection(Direction.East);
-                        break;
-                    case Movement.Move:
-                        position.YDecrease();
-                        break;
-                }
-            });
+                case Movement.Right:
+                    position.ChangeDirection(Direction.West);
+                    break;
+                case Movement.Left:
+                    position.ChangeDirection(Direction.East);
+                    break;
+                case Movement.Move:
+                    position.YDecrease();
+                    break;
+            }
+
+            if (forced)
+            {
+                await positionTracker.SavePositionAsync(position);
+            }
         }
     }
 }

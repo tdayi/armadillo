@@ -6,7 +6,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Armadillo.Web.Middleware
+namespace Armadillo.Web.Core.Middleware
 {
     public class ErrorHandlingMiddleware
     {
