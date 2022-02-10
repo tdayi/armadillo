@@ -41,7 +41,7 @@ namespace Armadillo.Test.SpaceVehicle
 
             positionTracker = new PositionTracker(positionTrackerLogger.Object, appSettings.Object, jsonSerializer);
 
-            var navigators = new List<Navigator>
+            var navigators = new List<INavigator>
             {
                 new EastNavigator(positionTracker),
                 new NorthNavigator(positionTracker),

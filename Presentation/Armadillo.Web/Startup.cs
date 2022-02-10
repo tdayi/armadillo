@@ -66,10 +66,10 @@ namespace Armadillo.Web
             services.AddTransient<IDiscoveryAreaFactory, DiscoveryAreaFactory>();
             services.AddTransient<ISpaceVehicleFactory, SpaceVehicleFactory>();
 
-            services.AddTransient<Navigator, EastNavigator>();
-            services.AddTransient<Navigator, NorthNavigator>();
-            services.AddTransient<Navigator, SouthNavigator>();
-            services.AddTransient<Navigator, WestNavigator>();
+            services.AddTransient<INavigator, EastNavigator>();
+            services.AddTransient<INavigator, NorthNavigator>();
+            services.AddTransient<INavigator, SouthNavigator>();
+            services.AddTransient<INavigator, WestNavigator>();
 
             services.AddSwaggerGen(c =>
             {

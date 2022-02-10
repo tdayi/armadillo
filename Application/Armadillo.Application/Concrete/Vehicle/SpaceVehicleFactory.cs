@@ -15,14 +15,14 @@ namespace Armadillo.Application.Vehicle
     {
         private readonly ICacheManager cacheManager;
         private readonly ILogger<SpaceVehicleFactory> logger;
-        private readonly IEnumerable<Navigator> navigators;
+        private readonly IEnumerable<INavigator> navigators;
 
         private readonly SemaphoreSlim spaceVehicleCreateLock;
 
         public SpaceVehicleFactory(
             ICacheManager cacheManager,
             ILogger<SpaceVehicleFactory> logger,
-            IEnumerable<Navigator> navigators)
+            IEnumerable<INavigator> navigators)
         {
             this.cacheManager = cacheManager;
             this.logger = logger;

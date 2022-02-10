@@ -13,7 +13,7 @@ namespace Armadillo.Application.Navigation
             this.positionTracker = positionTracker;
         }
 
-        public override Direction Direction => Direction.West;
+        public override Direction NavDirection => Direction.West;
 
         public override async Task ChangePositionAsync(Position position, Movement movement, bool forced)
         {

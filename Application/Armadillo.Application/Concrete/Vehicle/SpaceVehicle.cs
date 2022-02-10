@@ -16,13 +16,13 @@ namespace Armadillo.Application.Vehicle
         private readonly string name;
         private readonly Position position;
         private readonly IDiscoveryArea discoveryArea;
-        private readonly IEnumerable<Navigator> navigators;
+        private readonly IEnumerable<INavigator> navigators;
 
         public SpaceVehicle(
             string name,
             Position position,
             IDiscoveryArea discoveryArea,
-            IEnumerable<Navigator> navigators)
+            IEnumerable<INavigator> navigators)
         {
             this.name = name;
             this.position = position;
@@ -56,7 +56,7 @@ namespace Armadillo.Application.Vehicle
                 throw new BusinessException($"Discovery area width: {discoveryArea.Width} and height: {discoveryArea.Height} is not avaliable next movement!");
             }
 
-            await navigator.SetPosition(position, movement);
+            await navigator.ChangePositionAsync(position, movement);
         }
     }
 }

@@ -3,9 +3,13 @@ using System.Threading.Tasks;
 
 namespace Armadillo.Core.Navigation
 {
-    public abstract class Navigator
+    public abstract class Navigator : INavigator
     {
         private readonly IPositionTracker positionTracker;
+
+        public Direction Direction => NavDirection;
+
+        public abstract Direction NavDirection { get; }
 
         protected Navigator(
             IPositionTracker positionTracker)
@@ -13,14 +17,12 @@ namespace Armadillo.Core.Navigation
             this.positionTracker = positionTracker;
         }
 
-        public abstract Direction Direction { get; }
-
-        public async Task SetPosition(Position position, Movement movement)
+        public async Task ChangePositionAsync(Position position, Movement movement)
         {
             await ChangePositionAsync(position, movement, true);
         }
 
-        public async Task<Position> CalculatePositionAsync(Position position, Movement movement)
+        public async Task<Position> CalculatedNextPositionAsync(Position position, Movement movement)
         {
             Position clonePosition = (Position)position.Clone();
             await ChangePositionAsync(clonePosition, movement, false);

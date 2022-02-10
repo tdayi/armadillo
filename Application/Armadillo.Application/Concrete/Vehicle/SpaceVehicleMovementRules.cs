@@ -10,7 +10,7 @@ namespace Armadillo.Application.Concrete.Vehicle
         Left left = new Left();
         Right right = new Right();
 
-        public bool IsAvailable(ISpaceVehicle spaceVehicle, Navigator navigator, Movement movement, Position position)
+        public bool IsAvailable(ISpaceVehicle spaceVehicle, INavigator navigator, Movement movement, Position position)
         {
             bool available = true;
 
@@ -33,9 +33,9 @@ namespace Armadillo.Application.Concrete.Vehicle
 
     public class Move
     {
-        public bool Check(ISpaceVehicle spaceVehicle, Navigator navigator, Movement movement, Position position)
+        public bool Check(ISpaceVehicle spaceVehicle, INavigator navigator, Movement movement, Position position)
         {
-            var calculatedPosition = navigator.CalculatePositionAsync(position, movement).Result;
+            var calculatedPosition = navigator.CalculatedNextPositionAsync(position, movement).Result;
 
             if (calculatedPosition.X < 0 || calculatedPosition.X > spaceVehicle.DiscoveryArea.Width || calculatedPosition.Y < 0 || calculatedPosition.Y > spaceVehicle.DiscoveryArea.Height)
             {
@@ -50,7 +50,7 @@ namespace Armadillo.Application.Concrete.Vehicle
 
     public class Left
     {
-        public bool TurnLeft(ISpaceVehicle spaceVehicle, Navigator navigator)
+        public bool TurnLeft(ISpaceVehicle spaceVehicle, INavigator navigator)
         {
             return true;
         }
@@ -58,7 +58,7 @@ namespace Armadillo.Application.Concrete.Vehicle
 
     public class Right
     {
-        public bool TurnRight(ISpaceVehicle spaceVehicle, Navigator navigator)
+        public bool TurnRight(ISpaceVehicle spaceVehicle, INavigator navigator)
         {
             return true;
         }
