@@ -15,7 +15,7 @@ namespace Armadillo.Application.Navigation
 
         public override Direction NavDirection => Direction.West;
 
-        public override async Task ChangePositionAsync(Position position, Movement movement, bool forced)
+        public override async Task SetNewPositionAsync(Position position, Movement movement, bool forced)
         {
             switch (movement)
             {

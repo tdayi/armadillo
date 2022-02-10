@@ -19,17 +19,17 @@ namespace Armadillo.Core.Navigation
 
         public async Task ChangePositionAsync(Position position, Movement movement)
         {
-            await ChangePositionAsync(position, movement, true);
+            await SetNewPositionAsync(position, movement, true);
         }
 
         public async Task<Position> CalculatedNextPositionAsync(Position position, Movement movement)
         {
             Position clonePosition = (Position)position.Clone();
-            await ChangePositionAsync(clonePosition, movement, false);
+            await SetNewPositionAsync(clonePosition, movement, false);
 
             return clonePosition;
         }
 
-        public abstract Task ChangePositionAsync(Position position, Movement movement, bool forced);
+        public abstract Task SetNewPositionAsync(Position position, Movement movement, bool forced);
     }
 }
