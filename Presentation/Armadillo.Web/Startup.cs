@@ -1,4 +1,5 @@
 using Armadillo.Application.Concrete.Cache;
+using Armadillo.Application.Concrete.Navigation;
 using Armadillo.Application.Concrete.Serializer;
 using Armadillo.Application.Discovery;
 using Armadillo.Application.Navigation;
@@ -60,6 +61,7 @@ namespace Armadillo.Web
 
             services.AddTransient<ICacheManager, InMemoryCacheManager>();
             services.AddTransient<IJsonSerializer, JsonSerializer>();
+            services.AddTransient<IPositionTracker, PositionTracker>();
 
             services.AddTransient<IDiscoveryAreaFactory, DiscoveryAreaFactory>();
             services.AddTransient<ISpaceVehicleFactory, SpaceVehicleFactory>();

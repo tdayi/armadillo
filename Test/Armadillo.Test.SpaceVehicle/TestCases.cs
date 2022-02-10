@@ -33,7 +33,10 @@ namespace Armadillo.Test.SpaceVehicle
         {
             jsonSerializer = new JsonSerializer();
 
-            appSettings.Setup(x => x.Tracker).Returns(new Tracker("armadillo_position/"));
+            appSettings.Setup(x => x.Tracker).Returns(new Tracker
+            {
+                Path = "armadillo_position/"
+            });
 
             positionTracker = new PositionTracker(positionTrackerLogger.Object, appSettings.Object, jsonSerializer);
 

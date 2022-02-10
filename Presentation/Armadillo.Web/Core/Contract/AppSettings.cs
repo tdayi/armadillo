@@ -4,6 +4,6 @@ namespace Armadillo.Web.Core.Contract
 {
     public class AppSettings : IAppSettings
     {
-        public Tracker Tracker { get; protected set; }
+        public Tracker Tracker { get; set; }
     }
 }

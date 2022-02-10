@@ -7,11 +7,6 @@
 
     public class Tracker
     {
-        public Tracker(string path)
-        {
-            Path = path;
-        }
-
-        public string Path { get; protected set; }
+        public string Path { get; set; }
     }
 }
